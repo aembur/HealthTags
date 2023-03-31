@@ -25,6 +25,11 @@ public abstract class RenderLivingMixin<T extends EntityLivingBase> extends Rend
     public void doRender(EntityLivingBase entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo ci) {
         if (entity instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entity;
+
+            if (player.getUniqueID().equals(Minecraft.getMinecraft().player.getUniqueID())) {
+                return;
+            }
+
             int health = (int) Math.ceil(player.getHealth());
             String healthStr = String.valueOf(health);
 
